@@ -5,14 +5,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moin</title>
+    <style>
+        .container {
+            width: 80vw;
+            height: 100px;
+            /* border: 2px solid blue; */
+            position: fixed;
+            top: 30vh;
+            left: 10vw;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+        }
+
+        .progress {
+            height: 5px;
+            aspect-ratio: 1/1;
+            position: relative;
+            left: 0%;
+            transform: translateX(5px);
+            background: black;
+            border-radius: 50%;
+
+        }
+
+
+        .spectrum {
+            position: fixed;
+
+            width: 80vw;
+            height: 100px;
+            top: 30vh;
+            left: 10vw;
+            z-index: -1;
+            background-color: black;
+            display: flex;
+        }
+
+        .spectrum * {
+            height: 100%;
+            flex: 1 1 100%
+        }
+    </style>
 </head>
 
 <body>
-    moin
-    terminaltest
-    dritte
-    <button class="bg-color">BG Color</button>
-    <button class="timeout">start</button>
+
+    <button class="bgcolor">start</button>
+    <button class="reset">Reset</button>
+
+    <div class="container">
+        <div class="progress"></div>
+    </div>
+
+    <div class="spectrum"></div>
 
 
     <script src="main.js"></script>

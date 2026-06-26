@@ -1,36 +1,67 @@
-document.querySelector(".bg-color").addEventListener("click", bgColor);
-document.querySelector(".timeout").addEventListener("click", timeout)
+const body = document.querySelector("body")
+const bgButton = document.querySelector(".bgcolor");
+const resetButton = document.querySelector(".reset");
+const progressCircle = document.querySelector(".progress")
+const spectrumContainer = document.querySelector(".spectrum")
+
+
+bgButton.addEventListener("click", bgColor);
+resetButton.addEventListener("click", reset)
+
 
 let h = 0;
-function bgColor() {
-    if (h >= 360) {
-        h = 0
-    } else {
-        h += 10
-    }
-    document.querySelector("body").style.backgroundColor = "hsl(" + h + " 100% 70%)"
-    console.log(h);
-
-}
 
 let running = false
 let interval
-function timeout() {
+function bgColor() {
     if (!running) {
 
         running = true;
+
+        bgButton.innerHTML = "stop"
+
         interval = setInterval(() => {
-            if (h >= 360) {
+            if (h >= 350) {
                 h = 0
             } else {
                 h += 10
             }
-            document.querySelector("body").style.backgroundColor = "hsl(" + h + " 100% 70%)"
+            body.style.backgroundColor = "hsl(" + h + " 100% 50%)"
+
+            progressCircle.style.left = h / 3.6 + "%";
+
         }, 100);
 
     } else {
         clearInterval(interval)
         running = false
+        bgButton.innerHTML = "start"
     }
 
 }
+
+function reset() {
+    body.style.backgroundColor = "white";
+    h = 0;
+    progressCircle.style.left = h / 3.6 + "%";
+
+}
+
+function spectrum() {
+
+    for (let h = 0; h < 360; h += 10) {
+
+
+        var shade = document.createElement("div");
+        shade.style.backgroundColor = "hsl(" + h + " 100% 50%)"
+        console.log(h);
+
+        spectrumContainer.appendChild(shade)
+
+
+    }
+
+
+}
+
+spectrum();
